@@ -1,8 +1,11 @@
 # API Top Active Users
 > RESTful api with Domain Driven Design
 
+[![Build Status](https://travis-ci.org/joshuaalpuerto/api-top-active-user.svg?branch=master)](https://travis-ci.org/joshuaalpuerto/api-top-active-user)
+[![Coverage Status](https://coveralls.io/repos/github/joshuaalpuerto/api-top-active-user/badge.svg?branch=master)](https://coveralls.io/github/joshuaalpuerto/api-top-active-user?branch=master)
 ![Dependecies](https://david-dm.org/joshuaalpuerto/api-top-active-user/status.svg)
 ![Dev Dependecies](https://david-dm.org/joshuaalpuerto/api-top-active-user/dev-status.svg)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Development Environment Setup
 
