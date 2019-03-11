@@ -8,8 +8,6 @@ install:
  - yarn
 after_script:
  - npm run coveralls
-after_success:
-  - npm run travis-deploy-once
 cache:
   yarn: true
   directories:
