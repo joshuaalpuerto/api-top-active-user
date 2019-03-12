@@ -1,11 +1,10 @@
 const { toEntity } = require('./transform')
-const { comparePassword } = require('../../encryption')
 
 module.exports = ({ model }) => {
   const getAll = () =>
     model.findAll({
       attributes: [
-        'id', 'name', 'createdAt'
+        'id', 'name', 'created_at'
       ]
     }).then((entity) =>
       entity.map((data) => {
@@ -31,9 +30,6 @@ module.exports = ({ model }) => {
       .then(({ dataValues }) => toEntity(dataValues))
       .catch((error) => { throw new Error(error) })
 
-  const validatePassword = (endcodedPassword) => (password) =>
-    comparePassword(password, endcodedPassword)
-
   const destroy = (...args) =>
     model.destroy(...args)
 
@@ -43,7 +39,6 @@ module.exports = ({ model }) => {
     update,
     findById,
     findOne,
-    validatePassword,
     destroy
   }
 }
