@@ -7,11 +7,7 @@ module.exports = ({ userRepository }) => {
     return Promise
       .resolve()
       .then(() =>
-        userRepository.getAll({
-          attributes: [
-            'id', 'firstName', 'lastName', 'middleName', 'email', 'roleId', 'isDeleted', 'createdBy', 'updatedBy'
-          ]
-        })
+        userRepository.getAll()
       )
       .catch(error => {
         throw new Error(error)

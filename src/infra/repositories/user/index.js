@@ -2,8 +2,12 @@ const { toEntity } = require('./transform')
 const { comparePassword } = require('../../encryption')
 
 module.exports = ({ model }) => {
-  const getAll = (...args) =>
-    model.findAll(...args).then((entity) =>
+  const getAll = () =>
+    model.findAll({
+      attributes: [
+        'id', 'name', 'createdAt'
+      ]
+    }).then((entity) =>
       entity.map((data) => {
         const { dataValues } = data
         return toEntity(dataValues)
