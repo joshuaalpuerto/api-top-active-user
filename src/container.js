@@ -27,7 +27,7 @@ container
     response: asFunction(response).singleton(),
     date: asFunction(date).singleton(),
     config: asValue(config),
-    repository: asFunction(repository),
+    repository: asFunction(repository)
   })
 
 module.exports = container
