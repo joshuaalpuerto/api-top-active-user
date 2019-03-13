@@ -4,7 +4,7 @@ module.exports = ({ model }) => {
   const getAll = () =>
     model.findAll({
       attributes: [
-        'id', 'name', 'description', 'created_by', 'created_at'
+        'company_id', 'user_id', 'contact_user'
       ]
     }).then((entity) =>
       entity.map((data) => {
