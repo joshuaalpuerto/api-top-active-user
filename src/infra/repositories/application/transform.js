@@ -1,6 +1,6 @@
-const { Team } = require('src/domain/team')
+const { Application } = require('src/domain/application')
 
-const toEntity = Team
+const toEntity = Application
 
 module.exports = {
   toEntity
