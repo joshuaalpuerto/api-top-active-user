@@ -1,6 +1,6 @@
-const { Team } = require('src/domain/team')
+const { Listing } = require('src/domain/Listing')
 
-const toEntity = Team
+const toEntity = Listing
 
 module.exports = {
   toEntity
