@@ -8,6 +8,8 @@ module.exports = {
         (4, (now() - interval '101 days, 4 hours'), 'Daphne'),
         (5, (now() - interval '89 days, 6 hours'), 'Evan'),
         (6, (now() - interval '75 days, 2 hours'), 'Fabia')
+      ON CONFLICT (id)
+      DO NOTHING
     ;
     `)
   },
