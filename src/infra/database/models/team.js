@@ -25,5 +25,9 @@ module.exports = function (sequelize, DataTypes) {
     }
   })
 
+  // https://github.com/sequelize/sequelize/issues/311
+  // we create index after migrate
+  Team.removeAttribute('id')
+
   return Team
 }
