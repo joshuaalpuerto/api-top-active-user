@@ -28,6 +28,7 @@ Access `http://localhost:<PORT>/api/<VERSION>` and you're ready to go!
 - `npm run docker:db:refresh` - reset and run all migrations.
 - `npm run docker:db:refresh-test` - reset and run all migrations for test
 - `npm run docker:test` - refreshes test database and run unit and black-box testing.
+- `npm run docker:seed` - Seed data.
 
 *...will add more*
 

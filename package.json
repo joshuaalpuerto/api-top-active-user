@@ -32,7 +32,8 @@
     "docker:db:reset": "npm run docker:script npm run db:reset",
     "docker:db:refresh": "npm run docker:script npm run db:refresh",
     "docker:db:refresh-test": "npm run docker:script npm run db:refresh",
-    "docker:test": "npm run docker:script npm run test"
+    "docker:test": "npm run docker:script npm run test",
+    "docker:seed": "npm run docker:script npm run seed"
   },
   "lint-staged": {
     "*.js": "lint"
