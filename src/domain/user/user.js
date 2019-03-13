@@ -3,9 +3,9 @@ const { compose } = require('ramda')
 const { cleanData } = require('../helper')
 
 const User = t.struct({
-  id: t.maybe(t.String),
+  id: t.maybe(t.Number),
   name: t.String,
-  createdAt: t.maybe(t.Date)
+  created_at: t.maybe(t.Date)
 })
 
 module.exports = compose(
