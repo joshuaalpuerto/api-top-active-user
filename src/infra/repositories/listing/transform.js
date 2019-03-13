@@ -1,4 +1,4 @@
-const { Listing } = require('src/domain/Listing')
+const { Listing } = require('src/domain/listing')
 
 const toEntity = Listing
 
