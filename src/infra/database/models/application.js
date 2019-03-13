@@ -1,13 +1,21 @@
 module.exports = function (sequelize, DataTypes) {
-  const User = sequelize.define('users', {
+  const Application = sequelize.define('applications', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },
-    name: {
-      type: DataTypes.STRING(64),
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    listing_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    cover_letter: {
+      type: DataTypes.TEXT,
       allowNull: false
     }
   }, {
@@ -22,5 +30,5 @@ module.exports = function (sequelize, DataTypes) {
     }
   })
 
-  return User
+  return Application
 }
