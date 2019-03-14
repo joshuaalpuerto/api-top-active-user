@@ -1,3 +1,5 @@
+const { UserParams } = require('src/domain/user')
+
 /**
   * function for getter user.
   */
@@ -14,7 +16,22 @@ module.exports = ({ userRepository }) => {
       })
   }
 
+  const getTopActiveUser = ({ filters = {} } = {}) => {
+    return Promise
+      .resolve()
+      .then(async () => {
+        const { page } = UserParams({
+          page: parseInt(filters.page)
+        }).format()
+        return userRepository.getTopActiveUsers({ page })
+      })
+      .catch(error => {
+        throw new Error(error)
+      })
+  }
+
   return {
-    all
+    all,
+    getTopActiveUser
   }
 }
