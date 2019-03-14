@@ -5,6 +5,8 @@ module.exports = {
       (1, 1, TRUE),
       (2, 3, FALSE),
       (2, 4, TRUE)
+    ON CONFLICT (company_id, user_id)
+    DO NOTHING
     ;
     `)
   },
