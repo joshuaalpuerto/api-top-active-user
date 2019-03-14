@@ -16,10 +16,16 @@
     "test:cov": "cross-env NODE_PATH=. NODE_ENV=test istanbul cover node_modules/mocha/bin/_mocha -- --exit",
     "test:specs": "cross-env NODE_PATH=. NODE_ENV=test mocha --exit",
     "db:reset": "cross-env NODE_PATH=. && echo $NODE_PATH && npm run db:refresh && npm run seed",
-    "db:refresh": "sequelize db:migrate:undo:all && sequelize db:migrate",
-    "db:refresh-test": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test",
+    "db:refresh": "yarn migrate:sp:undo && yarn migrate:undo && yarn migrate && yarn migrate:sp",
+    "db:refresh-test": "yarn migrate:sp:test:undo && yarn migrate:test:undo && yarn migrate:test && yarn migrate:sp:test",
+    "db:refresh-sp": "yarn migrate:sp:undo && yarn migrate:sp",
+    "db:refresh-sp-test": "yarn migrate:sp:test:undo && yarn migrate:sp:test",
     "migrate": "sequelize db:migrate",
     "migrate:test": "sequelize db:migrate --env test",
+    "migrate:sp": "cross-env NODE_ENV=development sequelize db:migrate --migrations-path=./src/infra/sequelize/functions",
+    "migrate:sp:test": "cross-env NODE_ENV=development sequelize db:migrate --env test --migrations-path=./src/infra/sequelize/functions",
+    "migrate:sp:undo": "./cli/safe_undo_sp.js",
+    "migrate:sp:test:undo": "./cli/safe_undo_sp.js --env=test",
     "seed": "cross-env NODE_ENV=development NODE_PATH=. sequelize db:seed:all",
     "seed:test": "cross-env NODE_ENV=development sequelize db:seed:all --env test",
     "lint": "standard --verbose | snazzy",
@@ -31,7 +37,9 @@
     "docker:script": "docker-compose run --rm web",
     "docker:db:reset": "npm run docker:script npm run db:reset",
     "docker:db:refresh": "npm run docker:script npm run db:refresh",
+    "docker:db:refresh-sp": "npm run docker:script npm run db:refresh-sp",
     "docker:db:refresh-test": "npm run docker:script npm run db:refresh",
+    "docker:db:refresh-sp-test": "npm run docker:script npm run db:refresh-sp-test",
     "docker:seed": "npm run docker:script npm run seed",
     "docker:test": "npm run docker:script npm run test",
     "docker:test:specs": "npm run docker:script npm run test:specs"
@@ -75,6 +83,7 @@
     "chai": "4.2.0",
     "codecrumbs": "1.1.5",
     "coveralls": "3.0.3",
+    "draxt": "0.6.0",
     "istanbul": "1.1.0-alpha.1",
     "lint-staged": "8.1.5",
     "mocha": "6.0.2",
@@ -88,7 +97,8 @@
     "snazzy": "^8.0.0",
     "standard": "^12.0.1",
     "supertest": "3.4.2",
-    "travis-deploy-once": "5.0.11"
+    "travis-deploy-once": "5.0.11",
+    "yargs": "13.2.2"
   },
   "standard": {
     "ignore": [
@@ -109,7 +119,13 @@
     "url": "https://github.com/joshuaalpuerto/api-top-active-user.git"
   },
   "nodemonConfig": {
-    "ignore": ["test/*", "logs/*", "redis-data/*", "postgres-data/*", "coverage/*"],
+    "ignore": [
+      "test/*",
+      "logs/*",
+      "redis-data/*",
+      "postgres-data/*",
+      "coverage/*"
+    ],
     "delay": "1000"
   }
 }
