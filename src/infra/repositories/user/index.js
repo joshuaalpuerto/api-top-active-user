@@ -13,6 +13,17 @@ module.exports = ({ model }) => {
       })
     )
 
+  const getTopActiveUsers = ({
+    page = 0,
+    limit = 5
+  }) => {
+    return model.sequelize.query('select * from  sp_get_top_active_users(:params )', { type: model.sequelize.QueryTypes.SELECT,
+      replacements: { params: [
+        page,
+        limit
+      ] } })
+  }
+
   const create = (...args) =>
     model.create(...args).then(({ dataValues }) => toEntity(dataValues))
 
@@ -35,6 +46,7 @@ module.exports = ({ model }) => {
 
   return {
     getAll,
+    getTopActiveUsers,
     create,
     update,
     findById,
