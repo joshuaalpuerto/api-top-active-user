@@ -7,6 +7,6 @@ module.exports = {
     return queryInterface.sequelize.query(sql)
   },
   down: function (queryInterface) {
-    // return queryInterface.sequelize.query('')
+    return queryInterface.sequelize.query('')
   }
 }
