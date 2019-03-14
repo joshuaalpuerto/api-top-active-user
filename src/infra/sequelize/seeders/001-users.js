@@ -7,7 +7,13 @@ module.exports = {
         (3, (now() - interval '124 days, 1 hours'), 'Carl'),
         (4, (now() - interval '101 days, 4 hours'), 'Daphne'),
         (5, (now() - interval '89 days, 6 hours'), 'Evan'),
-        (6, (now() - interval '75 days, 2 hours'), 'Fabia')
+        (6, (now() - interval '75 days, 2 hours'), 'Fabia'),
+        (7, (now() - interval '175 days, 5 hours'), 'Laiba'),
+        (8, (now() - interval '154 days, 7 hours'), 'Suman'),
+        (9, (now() - interval '124 days, 1 hours'), 'Hanifa'),
+        (10, (now() - interval '101 days, 4 hours'), 'Amelia-Mae'),
+        (11, (now() - interval '89 days, 6 hours'), 'Beulah'),
+        (12, (now() - interval '75 days, 2 hours'), 'Miles')
       ON CONFLICT (id)
       DO NOTHING
     ;
