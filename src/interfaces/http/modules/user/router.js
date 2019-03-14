@@ -79,7 +79,7 @@ module.exports = ({
   router
     .get('/', (req, res) => {
       getUseCase
-        .all(req, res)
+        .all()
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
