@@ -124,7 +124,7 @@ module.exports = ({
 
   /**
  * @swagger
- * /topActiveUsers:
+ * /users/topActiveUsers:
  *   get:
  *     tags:
  *       - Users
