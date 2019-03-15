@@ -7,8 +7,8 @@ const { Router } = require('express')
 const { partialRight } = require('ramda')
 
 const controller = require('./utils/create_controller')
-const httpLogger = require('./middlewares/http_logger')
 const errorHandler = require('./middlewares/error_handler')
+const { Logger: httpLogger } = require('./middlewares/http_logger')
 
 module.exports = ({ config, logger, database }) => {
   const router = Router()
