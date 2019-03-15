@@ -4,6 +4,7 @@ node_js:
 before_install:
  - npm install -g yarn
  - psql -c 'create database internal_active_user_test;' -U postgres
+ - psql --version
 install:
  - yarn
 after_script:
