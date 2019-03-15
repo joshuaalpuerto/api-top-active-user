@@ -41,8 +41,9 @@ module.exports = ({
  *         type: string
  *       userId:
  *         type: integer
- *       listingId:
- *         type: integer
+ *       listing:
+ *         type: object
+ *         $ref: '#/definitions/listing'
  *   top-active-user:
  *     properties:
  *       id:
@@ -57,6 +58,26 @@ module.exports = ({
  *         type: array
  *         items:
  *           $ref: '#/definitions/listing'
+ *   detail-user:
+ *     properties:
+ *       id:
+ *         type: integer
+ *       createdAt:
+ *         type: date
+ *       name:
+ *         type: string
+ *       companies:
+ *         type: array
+ *         items:
+ *           $ref: '#/definitions/company'
+ *       createdListings:
+ *         type: array
+ *         items:
+ *           $ref: '#/definitions/listing'
+ *       applications:
+ *         type: array
+ *         items:
+ *           $ref: '#/definitions/application'
  */
 
   /**
@@ -65,14 +86,25 @@ module.exports = ({
  *   get:
  *     tags:
  *       - Users
- *     description: Returns a list of users
+ *     description: Returns a list of users or detail view of user if userId is passed as parameters.
+ *     parameters:
+ *       - in: "query"
+ *         name: "userId"
+ *         description: "User Id to filter result"
+ *         type: integer
+ *         format: "int64"
+ *       - in: "query"
+ *         name: "page"
+ *         description: "Pagination default 0"
+ *         type: integer
+ *         format: "int64"
  *     responses:
  *       200:
  *         description: An array of users
  *         schema:
  *           type: array
  *           items:
- *             $ref: '#/definitions/user'
+ *             $ref: '#/definitions/detail-user'
  *       401:
  *        $ref: '#/responses/Unauthorized'
  */
@@ -97,6 +129,12 @@ module.exports = ({
  *     tags:
  *       - Users
  *     description: Returns a list top active users
+ *     parameters:
+ *       - in: "query"
+ *         name: "page"
+ *         description: "Pagination default 0"
+ *         type: integer
+ *         format: "int64"
  *     responses:
  *       200:
  *         description: An array of users
