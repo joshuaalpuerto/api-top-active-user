@@ -16,11 +16,29 @@ describe('Routes: GET UsersTopActive', () => {
   })
 
   describe('Should return users', () => {
-    it('should return all users', (done) => {
+    it('should return paginated users', (done) => {
       request.get(`${BASE_URI}/users`)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.data).to.have.length(12)
+          expect(res.body.data).to.have.length(5)
+          done(err)
+        })
+    })
+
+    it('should return detail view for specific user', (done) => {
+      request.get(`${BASE_URI}/users?userId=1`)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.data.name).to.equals('Alice')
+          done(err)
+        })
+    })
+
+    it('should return detail view for specific user and should have not limit to applications', (done) => {
+      request.get(`${BASE_URI}/users?userId=1`)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.data.applications).to.have.length(6)
           done(err)
         })
     })

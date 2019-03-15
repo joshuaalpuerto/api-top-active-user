@@ -3,6 +3,7 @@ CREATE OR REPLACE FUNCTION public.sp_get_top_active_users(IN paramOffset integer
   RETURNS TABLE(
     "id" integer,
     "name" varchar,
+    "createdAt" timestamp with time zone,
     "count" integer,
     "listing" json
   ) AS
@@ -10,6 +11,7 @@ $BODY$
 	SELECT
     a."id",
     a."name",
+    a."created_at",
     (SELECT
       COUNT(b."id")
     FROM "applications" b
