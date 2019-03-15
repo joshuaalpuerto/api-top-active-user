@@ -12,6 +12,18 @@
 1.  Make sure you have `nvm`, node `v10.7` or `LTS` version of node installed
 2.  Use a smart `.npmrc`. By default, `npm` doesn’t save installed dependencies to package.json (and you should always track your dependencies!).
 
+## Quick Start
+
+1. Clone the repository with `git clone --depth=1 https://github.com/joshuaalpuerto/api-top-active-user`
+2. Create `.env` using `.env-sample` as template.
+3. Create the development and test [Databases](https://github.com/joshuaalpuerto/api-top-active-user#database-setup-development) or run app using [Docker](https://github.com/joshuaalpuerto/api-top-active-user#docker-support)
+4. Run database migrations and seed with `npm run db:reset`
+5. Run the application in development mode with `npm run start:dev`
+6. Run the application in production mode with `npm run start`
+7. Access `http://localhost:<PORT>/api/<VERSION>` and you're ready to go!
+    > http://localhost:4000/api/v1
+8. Documents are available at `http://localhost:4000/docs` thru **swagger**. This can be accessed once you have a server running. You can also play around with the api using the `UI` simply clicking **Try it out** button on each endpoint. Awesome right?
+
 ## Docker support
 
 **Prerequisites**
@@ -36,21 +48,10 @@ Access `http://localhost:<PORT>/api/<VERSION>` and you're ready to go!
 
 > **NOTE** if you run this via docker then all the scripts should be run against *docker:script* check `package.json` for implementation.
 
-## Quick Start
-
-1. Clone the repository with `git clone --depth=1 https://github.com/joshuaalpuerto/node-ddd-boilerplate.git`
-3. Create the development and test [Databases](https://github.com/joshuaalpuerto/node-ddd-boilerplate#database-setup-development)
-4. Run database migrations and seed with `npm run db:refresh`
-5. Run the application in development mode with `npm run start:dev`
-6. Run the application in production mode with `npm run start`
-7. Access `http://localhost:<PORT>/api/<VERSION>` and you're ready to go!
-    > http://localhost:4000/api/v1
-
-
 ### Database Setup (Development)
 
 1. Install [PostgreSql](https://www.postgresql.org/) - v9.6.
-2. Create an empty database named - `node_ddd` and `node_ddd_test` for test enviroment.
+2. Create an empty database named - `internal_active_user` and `internal_active_user_test` for test enviroment.
 3. Rename the .env and populate it with the correct credentials and settings of your Postgresql databases
 4. Enable SSL in the `postgresql.conf` configuration file of your Postgresql installation.
 
@@ -64,6 +65,25 @@ Type "help" for help.
 $ CREATE DATABASE internal_active_user;
 $ CREATE DATABASE internal_active_user_test;
 ```
+
+#### Postgres Setup issues
+1. If encountered **password authication error** you can follow this steps:
+
+Add a new line to the top of `pg_hba.conf`:
+```sh
+local    postgres     postgres     peer
+```
+then restart/reload PostgreSQL and:
+```sh
+sudo -u postgres psql
+```
+From the resulting prompt:
+```sh
+ALTER USER postgres PASSWORD 'my_postgres_password';
+```
+then remove the line you added to `pg_hba.conf` and restart Pg again. You can now use the password you set above to connect to PostgreSQL as the `postgres` user.
+
+> Or just use docker :)
 
 ## Overview
 
