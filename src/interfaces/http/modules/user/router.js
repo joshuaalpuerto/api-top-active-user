@@ -78,8 +78,12 @@ module.exports = ({
  */
   router
     .get('/', (req, res) => {
+      const filters = {
+        userId: req.query.userId || null,
+        page: req.query.page || 0
+      }
       getUseCase
-        .all()
+        .all({ filters })
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })

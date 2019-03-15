@@ -5,12 +5,15 @@ const { UserParams } = require('src/domain/user')
   */
 module.exports = ({ userRepository }) => {
   // code for getting all the items
-  const all = () => {
+  const all = ({ filters }) => {
     return Promise
       .resolve()
-      .then(() =>
-        userRepository.getAll()
-      )
+      .then(() => {
+        const { page } = UserParams({
+          page: parseInt(filters.page)
+        }).format()
+        return userRepository.getAllDetailView({ page })
+      })
       .catch(error => {
         throw new Error(error)
       })

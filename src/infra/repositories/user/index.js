@@ -13,6 +13,18 @@ module.exports = ({ model }) => {
       })
     )
 
+  const getAllDetailView = ({
+    page = 0,
+    limit = 5
+  }) => {
+    return model.sequelize.query('select * from  sp_get_user_detail_view(:params )', { type: model.sequelize.QueryTypes.SELECT,
+      replacements: { params: [
+        null,
+        page,
+        limit
+      ] } })
+  }
+
   const getTopActiveUsers = ({
     page = 0,
     limit = 5
@@ -46,6 +58,7 @@ module.exports = ({ model }) => {
 
   return {
     getAll,
+    getAllDetailView,
     getTopActiveUsers,
     create,
     update,
