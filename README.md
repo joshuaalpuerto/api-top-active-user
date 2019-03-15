@@ -27,6 +27,7 @@ Access `http://localhost:<PORT>/api/<VERSION>` and you're ready to go!
 - `npm run docker:db:reset` - reset and run all migrations and seeders.
 - `npm run docker:db:refresh` - reset and run all migrations.
 - `npm run docker:db:refresh-test` - reset and run all migrations for test
+- `npm run docker:db:refresh-sp` - refresh store procedure scripts w/o affecting migrations for table.
 - `npm run docker:seed` - Seed data.
 - `npm run docker:test` - refreshes test database and run unit and black-box testing.
 - `npm run docker:test:specs` - run test specific test passing `-- --grep <path>`
@@ -81,6 +82,7 @@ $ CREATE DATABASE internal_active_user_test;
 - `npm run test` - run Unit tests
 - `npm run db:reset` - run all migrations and seeds.
 - `npm run db:refresh` - run all migrations.
+- `npm run db:refresh-sp` - refresh store procedure scripts w/o affecting migrations for table.
 - `npm run lint` - lint codebase using JavaScript Standard Style
 - `npm run lint:fix` - fix code according to JS Standard Style
 - `npm run migrate` - apply db changes using migration script

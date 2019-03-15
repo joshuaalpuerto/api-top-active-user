@@ -14,23 +14,49 @@ module.exports = ({
  *   user:
  *     properties:
  *       id:
+ *         type: integer
+ *       name:
  *         type: string
- *         format: uuid
- *       firstName:
+ *   company:
+ *     properties:
+ *       id:
+ *         type: integer
+ *       name:
  *         type: string
- *       lastName:
+ *   listing:
+ *     properties:
+ *       id:
+ *         type: integer
+ *       name:
  *         type: string
- *       middleName:
+ *       description:
  *         type: string
- *       email:
- *         type: string
- *       roleId:
- *         type: number
- *       isDeleted:
- *         type: number
  *       createdBy:
+ *         type: integer
+ *   application:
+ *     properties:
+ *       id:
+ *         type: integer
+ *       coverLetter:
  *         type: string
- *         format: uuid
+ *       userId:
+ *         type: integer
+ *       listingId:
+ *         type: integer
+ *   top-active-user:
+ *     properties:
+ *       id:
+ *         type: integer
+ *       createdAt:
+ *         type: date
+ *       name:
+ *         type: string
+ *       count:
+ *         type: integer
+ *       listings:
+ *         type: array
+ *         items:
+ *           $ref: '#/definitions/listing'
  */
 
   /**
@@ -40,8 +66,6 @@ module.exports = ({
  *     tags:
  *       - Users
  *     description: Returns a list of users
- *     security:
- *       - JWT: []
  *     responses:
  *       200:
  *         description: An array of users
@@ -55,7 +79,41 @@ module.exports = ({
   router
     .get('/', (req, res) => {
       getUseCase
-        .all(req, res)
+        .all()
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+
+  /**
+ * @swagger
+ * /topActiveUsers:
+ *   get:
+ *     tags:
+ *       - Users
+ *     description: Returns a list top active users
+ *     responses:
+ *       200:
+ *         description: An array of users
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/top-active-user'
+ *       401:
+ *        $ref: '#/responses/Unauthorized'
+ */
+  router
+    .get('/topActiveUsers', (req, res) => {
+      const filters = {
+        page: req.query.page || 0
+      }
+      getUseCase
+        .getTopActiveUser({ filters })
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
