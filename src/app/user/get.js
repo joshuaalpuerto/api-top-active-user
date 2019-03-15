@@ -5,27 +5,23 @@ const { UserParams } = require('src/domain/user')
   */
 module.exports = ({ userRepository }) => {
   // code for getting all the items
-  const all = ({ filters }) => {
+  const all = ({ queryParams }) => {
     return Promise
       .resolve()
       .then(() => {
-        const { page } = UserParams({
-          page: parseInt(filters.page)
-        }).format()
-        return userRepository.getAllDetailView({ page })
+        const { page, userId } = UserParams(queryParams).format()
+        return userRepository.getAllDetailView({ userId, page })
       })
       .catch(error => {
         throw new Error(error)
       })
   }
 
-  const getTopActiveUser = ({ filters = {} } = {}) => {
+  const getTopActiveUser = ({ queryParams }) => {
     return Promise
       .resolve()
       .then(async () => {
-        const { page } = UserParams({
-          page: parseInt(filters.page)
-        }).format()
+        const { page } = UserParams(queryParams).format()
         return userRepository.getTopActiveUsers({ page })
       })
       .catch(error => {
