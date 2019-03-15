@@ -25,6 +25,24 @@ describe('Routes: GET UsersTopActive', () => {
         })
     })
 
+    it('should return detail view for specific user', (done) => {
+      request.get(`${BASE_URI}/users?userId=1`)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.data.name).to.equals('Alice')
+          done(err)
+        })
+    })
+
+    it('should return detail view for specific user and should have not limit to applications', (done) => {
+      request.get(`${BASE_URI}/users?userId=1`)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.data.applications).to.have.length(6)
+          done(err)
+        })
+    })
+
     describe('topActiveUsers', (done) => {
       it('should return 5 users by default', (done) => {
         request.get(`${BASE_URI}/users/topActiveUsers`)
