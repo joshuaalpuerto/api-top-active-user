@@ -45,7 +45,7 @@ Access `http://localhost:<PORT>/api/<VERSION>` and you're ready to go!
 6. Run the application in production mode with `npm run start`
 7. Access `http://localhost:<PORT>/api/<VERSION>` and you're ready to go!
     > http://localhost:4000/api/v1
-
+8. Documents are available at `http://localhost:4000/docs` thru **swagger**. This can be accessed once you have a server running. You can also play around with the api using the `UI` simply clicking **Try it out** button on each endpoint. Awesome right?
 
 ### Database Setup (Development)
 
