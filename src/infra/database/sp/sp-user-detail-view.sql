@@ -24,7 +24,7 @@ $BODY$
       FROM "companies" b
       LEFT JOIN "teams" c ON c."company_id" = b."id"
       WHERE c."user_id" = a."id"
-      LIMIT 5
+      LIMIT CASE WHEN paramUser IS NULL THEN 5 END
 		) t),
     (SELECT
       json_agg(t) "createdListings"
@@ -36,7 +36,7 @@ $BODY$
         d."created_at" "createdAt"
       FROM "listings" d
       WHERE d."created_by" = a."id"
-      LIMIT 5
+      LIMIT CASE WHEN paramUser IS NULL THEN 5 END
     ) t),
     (SELECT
       json_agg(t) "applications"
@@ -57,7 +57,7 @@ $BODY$
         ) listing) "listing"
       FROM "applications" e
       WHERE e."user_id" = a."id"
-      LIMIT 5
+      LIMIT CASE WHEN paramUser IS NULL THEN 5 END
 		) t)
   FROM "users" a
   WHERE (paramUser IS NULL OR a."id" = paramUser)
