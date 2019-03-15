@@ -13,5 +13,7 @@ cache:
   yarn: true
   directories:
     - node_modules
+addons:
+  postgresql: "10"
 services:
   - postgresql
