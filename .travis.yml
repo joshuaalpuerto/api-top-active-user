@@ -14,6 +14,6 @@ cache:
   directories:
     - node_modules
 addons:
-  postgresql: "10"
+  postgresql: '9.6'
 services:
   - postgresql
