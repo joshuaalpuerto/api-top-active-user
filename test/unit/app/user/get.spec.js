@@ -21,7 +21,7 @@ describe('App -> User -> Get', () => {
     })
 
     it('should display all the records on success', async () => {
-      const lists = await useCase.all({ filters: { page: 0, userId: null } })
+      const lists = await useCase.all({ queryParams: {} })
       expect(lists).to.equal(mockData)
     })
   })
@@ -41,7 +41,7 @@ describe('App -> User -> Get', () => {
     it('should display error on rejection', async () => {
       let error
       try {
-        await useCase.all({ filters: { page: 0, userId: null } })
+        await useCase.all({ queryParams: {} })
       } catch (e) {
         error = e.message
       }
