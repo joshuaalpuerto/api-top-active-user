@@ -78,12 +78,8 @@ module.exports = ({
  */
   router
     .get('/', (req, res) => {
-      const filters = {
-        userId: req.query.userId || null,
-        page: req.query.page || 0
-      }
       getUseCase
-        .all({ filters })
+        .all({ queryParams: req.query })
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
@@ -113,11 +109,8 @@ module.exports = ({
  */
   router
     .get('/topActiveUsers', (req, res) => {
-      const filters = {
-        page: req.query.page || 0
-      }
       getUseCase
-        .getTopActiveUser({ filters })
+        .getTopActiveUser({ queryParams: req.query })
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
