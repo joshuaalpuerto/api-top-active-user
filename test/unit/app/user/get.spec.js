@@ -12,7 +12,7 @@ describe('App -> User -> Get', () => {
   describe('Success path', () => {
     beforeEach(() => {
       const MockRepository = {
-        getAll: () => mockData
+        getAllDetailView: () => mockData
       }
 
       useCase = getUsecase({
@@ -21,7 +21,7 @@ describe('App -> User -> Get', () => {
     })
 
     it('should display all the records on success', async () => {
-      const lists = await useCase.all()
+      const lists = await useCase.all({ filters: { page: 0, userId: null } })
       expect(lists).to.equal(mockData)
     })
   })
@@ -30,7 +30,7 @@ describe('App -> User -> Get', () => {
     beforeEach(() => {
       const MockRepository = {
         // eslint-disable-next-line prefer-promise-reject-errors
-        getAll: () => Promise.reject('Error')
+        getAllDetailView: () => Promise.reject('Error')
       }
 
       useCase = getUsecase({
@@ -41,7 +41,7 @@ describe('App -> User -> Get', () => {
     it('should display error on rejection', async () => {
       let error
       try {
-        await useCase.all()
+        await useCase.all({ filters: { page: 0, userId: null } })
       } catch (e) {
         error = e.message
       }

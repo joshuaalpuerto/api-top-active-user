@@ -16,11 +16,11 @@ describe('Routes: GET UsersTopActive', () => {
   })
 
   describe('Should return users', () => {
-    it('should return all users', (done) => {
+    it('should return paginated users', (done) => {
       request.get(`${BASE_URI}/users`)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.data).to.have.length(12)
+          expect(res.body.data).to.have.length(5)
           done(err)
         })
     })
