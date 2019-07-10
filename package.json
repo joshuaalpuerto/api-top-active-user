@@ -82,7 +82,7 @@
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "chai": "4.2.0",
-    "codecrumbs": "1.1.5",
+    "codecrumbs": "1.6.1",
     "coveralls": "3.0.3",
     "draxt": "0.6.0",
     "istanbul": "1.1.0-alpha.1",
